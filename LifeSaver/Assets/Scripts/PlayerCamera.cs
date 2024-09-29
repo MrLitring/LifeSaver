@@ -1,28 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float sensitivity = 5.0f; // Чувствительность движения мыши
+    public float sensitivityX = 400;
+    public float sensitivityY = 400;
+
+
     private float rotationX = 0.0f;   // Угол поворота по оси X
     private float rotationY = 0.0f;   // Угол поворота по оси Y
+
+    public Transform Orientation;
 
     void Update()
     {
         // Получаем движение мыши
-        float mouseX = Input.GetAxis("Mouse X") * sensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
+        float mouseX = Input.GetAxis("Mouse X") * sensitivityX * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * sensitivityY * Time.deltaTime;
 
         // Обновляем углы поворота
-        rotationX -= mouseY; // Поворот по оси X
-        rotationY += mouseX; // Поворот по оси Y
+        rotationX -= mouseY;
+        rotationY += mouseX; 
 
         // Ограничиваем угол поворота по оси X
-        rotationX = Mathf.Clamp(rotationX, -40f, 40f);
+        rotationX = Mathf.Clamp(rotationX, -90, 90f);
 
         // Применяем поворот к камере
         transform.localRotation = Quaternion.Euler(rotationX, rotationY, 0);
+        Orientation.rotation = Quaternion.Euler(0, rotationY, 0);
     }
 }

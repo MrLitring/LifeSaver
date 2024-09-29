@@ -6,13 +6,18 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMove : MonoBehaviour
 {
-    private Rigidbody rb;
-    public int speedForce = 10;
-    public int jumpForce = 10;
-    public int maxSpeed = 5;
-
+    public int moveSpeed = 5;
+    public int jumpSpeed = 5;
+    public float airMultiply = 0.4f;
     public bool isGrounded = false;
+    public Transform Orientation;
     public float speed = 0;
+    
+
+    float vertical = 0;
+    float horizontal = 0;
+    private Rigidbody rb;
+
 
 
     private void Awake()
@@ -20,60 +25,85 @@ public class PlayerMove : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    private void Update()
+    {
+        IsGrounded();
+        MoveInput();
+        SpeedControl();
+    }
+
     private void FixedUpdate()
     {
         if (isGrounded)
         {
             Move();
-            Jump();
+
+            if (Input.GetKey(KeyCode.Space) && isGrounded)
+                Jump();
+
         }
-        SpeedControl();
+        
     }
 
-    private void Jump()
+    void MoveInput()
     {
-        if (Input.GetKey(KeyCode.Space))
-                rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        horizontal = 0;
+        vertical = 0;
+
+        if (Input.GetKey(KeyCode.W))
+            vertical = 1;
+        if (Input.GetKey(KeyCode.S))
+            vertical = -1;
+
+        if (Input.GetKey(KeyCode.A))
+            horizontal = -1;
+        if (Input.GetKey(KeyCode.D))
+            horizontal = 1;
+
+        
     }
 
     private void Move()
     {
-        if (Input.GetKey(KeyCode.W))
-            rb.AddForce(transform.forward * speedForce);
-        if (Input.GetKey(KeyCode.S))
-            rb.AddForce(-transform.forward * speedForce);
+        Vector3 MoveDirection = Orientation.forward * vertical + horizontal * Orientation.right;
+        
+        if (isGrounded)
+        {
+            rb.AddForce(MoveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        }
+        else if (!isGrounded)
+        {
+            rb.AddForce(MoveDirection.normalized * moveSpeed * 10f * airMultiply, ForceMode.Force);
+        }
+    }
 
-        if (Input.GetKey(KeyCode.A))
-            rb.AddForce(-transform.right * speedForce);
-        if (Input.GetKey(KeyCode.D))
-            rb.AddForce(transform.right * speedForce);
+    private void Jump()
+    {
+        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+
+        rb.AddForce(transform.up * jumpSpeed, ForceMode.Impulse);
     }
 
     private void SpeedControl()
     {
-        if (rb.velocity.magnitude >= maxSpeed)
+        if (rb.velocity.magnitude > moveSpeed)
         {
-            rb.velocity = rb.velocity.normalized * maxSpeed;
-        }
-
-        if(isGrounded)
-        {
-            if(rb.velocity.magnitude < 0.1)
-                rb.velocity = Vector3.zero;
+            Vector3 vector3 = new Vector3(rb.velocity.x, 0, rb.velocity.z).normalized * moveSpeed;
+            vector3.y = rb.velocity.y;
+            rb.velocity = vector3;
         }
 
         speed = rb.velocity.magnitude;
     }
 
-
-    private void OnCollisionEnter(Collision collision)
+    private void IsGrounded()
     {
-        isGrounded = true;
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        isGrounded = false;
+        RaycastHit hit;
+        Physics.Raycast(transform.position, transform.up * -1, out hit, 1.1f);
+        if (hit.collider != null)
+            isGrounded = true;
+        else
+            isGrounded = false;
     }
 
 }
