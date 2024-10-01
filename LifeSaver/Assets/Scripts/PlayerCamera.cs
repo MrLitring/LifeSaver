@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
@@ -23,7 +22,7 @@ public class PlayerCamera : MonoBehaviour
 
         // Обновляем углы поворота
         rotationX -= mouseY;
-        rotationY += mouseX; 
+        rotationY += mouseX;
 
         // Ограничиваем угол поворота по оси X
         rotationX = Mathf.Clamp(rotationX, -90, 90f);
