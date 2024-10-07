@@ -781,14 +781,6 @@ PrefabInstance:
       propertyPath: m_text
       value: "\u0422\u0435\u0441\u0442\u043E\u0432\u0430\u044F \u043A\u043E\u043C\u043D\u0430\u0442\u0430"
       objectReference: {fileID: 0}
-    - target: {fileID: 7078416052986262710, guid: 32f86659a98755e459f7247cb9a74efa, type: 3}
-      propertyPath: m_fontSize
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 7078416052986262710, guid: 32f86659a98755e459f7247cb9a74efa, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 18
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

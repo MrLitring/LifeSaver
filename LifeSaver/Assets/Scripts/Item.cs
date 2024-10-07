@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class Item : Interactable
 {
-    public override void Interact()
-    {
-        Inventory inventory =FindObjectOfType<Inventory>();
-        inventory.Add(gameObject);
+    public string itemName = "Item";
+    public string description = "";
 
+
+
+    public override void Interact(params object[] insides)
+    {
+        if (insides.Length > 0)
+        {
+            PlayerInventory inventory = FindObjectOfType<PlayerInventory>();
+            inventory.Add((int)insides[0], gameObject);
+        }
     }
 }

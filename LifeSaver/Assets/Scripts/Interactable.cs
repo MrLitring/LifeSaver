@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    public virtual void Interact()
+    public virtual void Interact(params object[] insides)
     {
         throw new System.Exception("Нету взаимодействия");
     }
