@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Item : Interactable
 {
+    public int ID = -1;
     public string itemName = "Item";
     public string description = "";
 

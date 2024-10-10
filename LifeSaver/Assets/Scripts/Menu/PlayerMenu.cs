@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -53,6 +54,7 @@ public class PlayerMenu : MonoBehaviour
     {
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneLoad(sceneIndex);
+        
     }
 
 
@@ -60,6 +62,7 @@ public class PlayerMenu : MonoBehaviour
     public void SceneLoad(int SceneIndex)
     {
         SceneManager.LoadScene(SceneIndex);
+        Time.timeScale = 1f;
     }
 
 

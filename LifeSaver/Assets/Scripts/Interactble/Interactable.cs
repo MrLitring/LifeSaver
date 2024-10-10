@@ -8,4 +8,14 @@ public class Interactable : MonoBehaviour
     {
         throw new System.Exception("Нету взаимодействия");
     }
+
+    public virtual void Interact(GameObject obj)
+    {
+        throw new System.Exception("Нету взаимодействия");
+    }
+
+    public virtual void Interact()
+    {
+        throw new System.Exception("Нету взаимодействия");
+    }
 }

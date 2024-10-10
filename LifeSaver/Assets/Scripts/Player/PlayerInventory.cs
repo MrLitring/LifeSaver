@@ -16,8 +16,6 @@ public class PlayerInventory : MonoBehaviour
 
     public void Add(int slotIndex, GameObject obj)
     {
-        slotIndex--;
-
         if (inventorySlots[slotIndex] == null)
         {
             inventorySlots[slotIndex] = obj;
@@ -29,12 +27,14 @@ public class PlayerInventory : MonoBehaviour
 
     public void Remove(int slotIndex)
     {
+        GameObject item = inventorySlots[slotIndex];
+        inventorySlots[slotIndex] = null;
+
+        item.transform.SetParent(null);
     }
 
     public void Drop(int slotIndex, Transform dropPosition)
     {
-        slotIndex--;
-
         if (inventorySlots[slotIndex] != null)
         {
             GameObject obj = null;
@@ -50,4 +50,17 @@ public class PlayerInventory : MonoBehaviour
 
     public GameObject[] GetInventory()
     { return inventorySlots; }
+
+    public GameObject GetItem(int index, bool isRemove = false)
+    {
+        if (inventorySlots[index] != null)
+        {
+            GameObject item = inventorySlots[index];
+            if (isRemove == true)
+                Remove(index);
+
+            return item;
+        }
+        else return null;
+    }
 }
