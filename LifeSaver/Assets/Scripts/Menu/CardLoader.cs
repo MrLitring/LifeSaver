@@ -10,12 +10,12 @@ using System;
 public class CardLoader : MonoBehaviour
 {
     public GameObject CardPrefabe;
-    public Transform Container;
+    public Transform CardContainer;
 
     private void Start()
     {
-        if(Container == null)
-            Container = transform;
+        if(CardContainer == null)
+            CardContainer = transform;
     }
 
     public void CardLoad()
@@ -23,6 +23,7 @@ public class CardLoader : MonoBehaviour
         string query = $"Select * from Scenario;"; 
 
         SqliteDataReader reader = SqlConnect.ExecuteReader(query);
+        int i = 0;
 
         if (reader.HasRows)
         {
@@ -33,16 +34,27 @@ public class CardLoader : MonoBehaviour
                     reader.GetInt32(0),
                     reader.GetString(1)
                     );
+                i++;
             }
         }
 
         SqlConnect.CloseConnection();
+
+        i = i / 4;
+        RectTransform rectTransform = CardContainer.GetComponent<RectTransform>();
+        Vector2 size = new Vector2(rectTransform.sizeDelta.x, rectTransform.sizeDelta.y);
+        size.y = i * 350 + i * 20 + 350 * 3 - 40;
+        Debug.Log(size);
+
+        rectTransform.sizeDelta = size;
+        Debug.Log(rectTransform.anchoredPosition);
+        rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, -size.y/2);
     }
 
     private void NewCard(int id, string textContent, Image image = null)
     {
         GameObject card = Instantiate(CardPrefabe);
-        card.transform.SetParent(Container);
+        card.transform.SetParent(CardContainer);
 
         CardInformation cardInfo =  card.GetComponent<CardInformation>();
         cardInfo.ID = id;

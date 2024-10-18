@@ -9,5 +9,6 @@ public class CardInformation : MonoBehaviour
     public int ID;
     public Image image;
     public TextMeshProUGUI FirstText;
+    public TextMeshProUGUI SecondText;
 
 }
