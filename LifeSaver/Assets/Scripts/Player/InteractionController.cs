@@ -28,8 +28,12 @@ public class InteractionController : MonoBehaviour
     {
         SlotController();
         Interactable interactable = InteractbleSearch();
-        if (interactable != null) InteractableAction(interactable);
+        if (interactable != null) 
+            InteractableAction(interactable);
 
+
+        if (Input.GetKeyUp(KeyboardSettings.Drop))
+            playerInventory.Drop(InventoryKey, DropHand);
     }
 
     private void InteractableAction(Interactable interactable)
@@ -51,8 +55,7 @@ public class InteractionController : MonoBehaviour
             }
 
 
-        if (Input.GetKeyUp(KeyboardSettings.Drop))
-            playerInventory.Drop(InventoryKey, DropHand);
+       
     }
 
 
@@ -88,13 +91,17 @@ public class InteractionController : MonoBehaviour
 
         if (helpText != null)
         {
+            string text = "";
             if (interactable != null)
             {
                 if (interactable.GetComponent<Item>())
-                    helpText.text = $"{interactable.GetComponent<Item>().itemName} : Нажмите на {KeyboardSettings.Interactble.ToString()} для взаимодействия";
+                {
+                    text = $"Нажмите на {KeyboardSettings.Interactble.ToString()} ," +
+                        $" чтобы поднять {interactable.GetComponent<Item>().itemName} :";
+                }
             }
-            else
-                helpText.text = "";
+
+            helpText.text = text;
         }
 
         return interactable;

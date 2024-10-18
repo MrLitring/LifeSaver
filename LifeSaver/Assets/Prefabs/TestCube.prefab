@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7262336818179959496}
   - component: {fileID: 4659026078387505460}
   m_Layer: 6
-  m_Name: Cube
+  m_Name: TestCube
   m_TagString: Items
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2980229874711327869}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -146,3 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22394304baab1274da93d9abfc76dbb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ID: -1
+  itemName: Item
+  description: 
