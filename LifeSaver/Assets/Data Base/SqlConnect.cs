@@ -25,7 +25,19 @@ public static class SqlConnect
 
     private static string GetDataBase()
     {
-        return Path.Combine(Application.dataPath, "Data Base" ,fileName);
+        string path = Path.Combine(Application.dataPath, "Resources", fileName);
+
+        if(File.Exists(path)) return path;
+
+        var db = Resources.Load<TextAsset>("db");
+        if(db != null)
+        {
+            string tempPath = Path.Combine(Application.temporaryCachePath,fileName);
+            File.WriteAllBytes(tempPath, db.bytes);
+            return tempPath;
+        }
+
+        return null;
     }
 
     public static void OpenConnection()
