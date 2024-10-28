@@ -4,8 +4,14 @@ using UnityEngine;
 using System.Data;
 using Mono.Data.Sqlite;
 using System.IO;
+using System;
 
-
+/// <summary>
+/// Класс отвечающий за работы в БД
+/// <para> - OpenConnection / CloseConnection - открытие/закрытие БД </para>
+/// <para> - ExecuteCommand - выполнение команды </para> 
+/// <para> - ExecuteReader - Чтение, возвращает SqliteDataReader </para>
+/// </summary>
 public static class SqlConnect
 {
     private const string fileName = "db.bytes";
@@ -15,6 +21,15 @@ public static class SqlConnect
 
 
     public static SqliteConnection Connection { get { return connection; } }
+    public static bool IsConnection
+    {
+        get
+        {
+            if (connection != null && connection.State == ConnectionState.Open)
+                return true;
+            else return false;
+        }
+    }
 
 
     static SqlConnect()
@@ -42,40 +57,47 @@ public static class SqlConnect
 
     public static void OpenConnection()
     {
-        connection = new SqliteConnection("Data Source=" + dbPath);
-        command = new SqliteCommand(connection);
-        connection.Open();
-
+        try
+        {
+            if (connection == null || IsConnection == false)
+            {
+                connection = new SqliteConnection("Data Source=" + dbPath);
+                command = new SqliteCommand(connection);
+                connection.Open();
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("Error opening connection: " + ex.Message);
+        }
     }
 
     public static void CloseConnection()
     {
-        connection.Close();
-        command.Dispose();
+        if (IsConnection)
+        {
+            connection.Close();
+            command.Dispose();
+        }
     }
 
     public static void ExecuteCommand(string query)
     {
         OpenConnection();
+
         command.CommandText = query;
         command.ExecuteNonQuery();
-        CloseConnection();
 
+        CloseConnection();
     }
 
     public static SqliteDataReader ExecuteReader(string query)
     {
-        if (IsConnection() == false) OpenConnection();
+        OpenConnection();
 
         command = new SqliteCommand(query, connection);
         SqliteDataReader reader = command.ExecuteReader();
         return reader;
     }
 
-    public static bool IsConnection()
-    {
-        if(connection != null && connection.State == ConnectionState.Open)
-            return true;
-        else return false;
-    }
 }

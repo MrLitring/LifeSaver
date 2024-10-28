@@ -97,7 +97,12 @@ public class InteractionController : MonoBehaviour
                 if (interactable.GetComponent<Item>())
                 {
                     text = $"Нажмите на {KeyboardSettings.Interactble.ToString()} ," +
-                        $" чтобы поднять {interactable.GetComponent<Item>().itemName} :";
+                        $" чтобы поднять {interactable.GetComponent<Item>().itemName}";
+                }
+                else if (interactable.GetComponent<NPCInteract>())
+                {
+                    text = $"Нажмите на {KeyboardSettings.Interactble.ToString()} ," +
+                        $" чтобы применить на {interactable.GetComponent<NPCInteract>().name}";
                 }
             }
 

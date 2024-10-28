@@ -6,9 +6,11 @@ using TMPro;
 
 public class CardInformation : MonoBehaviour
 {
-    public int ID;
+    public int ScenarioID;
     public Image image;
-    public TextMeshProUGUI FirstText;
-    public TextMeshProUGUI SecondText;
+    public TextMeshProUGUI TextName;
+    public TextMeshProUGUI TextGrade;
+
+    public Button button;
 
 }

@@ -1,9 +1,12 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Settings
+public static class Settings
 {
+    public static int LastSessionID = -1;
+
     public static void Save()
     {
 

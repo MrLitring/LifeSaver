@@ -5,16 +5,30 @@ using UnityEngine.SceneManagement;
 
 public class MenuLoader : MonoBehaviour
 {
-    public void SceneLoad(int sceneIndex)
+    public int ScenarioID = -1;
+
+    private void Start()
     {
-        if (sceneIndex >= 0)
+        CardInformation cardInformation = transform.GetComponent<CardInformation>();
+        ScenarioID = cardInformation.ScenarioID;
+    }
+
+    public void SceneLoad()
+    {
+        if (ScenarioID >= 0)
         {
-            SceneManager.LoadScene(sceneIndex);
+            SceneWork sceneWork = SceneWork.Instance;
+            sceneWork.ScenarioID = ScenarioID;
+            sceneWork.SceneLoad();
+
+            SceneManager.LoadScene(1);
         }
         else
         {
             throw new System.Exception("Индекс сцены не назначен на: " + gameObject.name.ToString());
         }
+
+
     }
 
 }

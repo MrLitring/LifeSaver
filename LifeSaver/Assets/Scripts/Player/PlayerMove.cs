@@ -27,7 +27,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
-        IsGrounded();
+        //IsGrounded();
         MoveInput();
         SpeedControl();
     }
@@ -104,6 +104,19 @@ public class PlayerMove : MonoBehaviour
             isGrounded = true;
         else
             isGrounded = false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        IsGrounded();
+        isGrounded = true;
+        
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        isGrounded = false;
+        IsGrounded();
     }
 
 }
