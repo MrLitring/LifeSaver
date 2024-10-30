@@ -58,7 +58,6 @@ public class PlayerMenu : MonoBehaviour
     }
 
 
-
     public void SceneLoad(int SceneIndex)
     {
         SceneManager.LoadScene(SceneIndex);
