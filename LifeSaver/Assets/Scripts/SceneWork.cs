@@ -30,9 +30,9 @@ public class SceneWork : MonoBehaviour
 
 
     public int ScenarioID = -1;
+    public int ScenarioIDNext = -1;
     public string SceneName = string.Empty;
     public string SceneDescription = string.Empty;
-    //public string SceneVersion;
     public List<int> items = new List<int>();
     public List<int> collisions = new List<int>();
     public List<int> actions = new List<int>();
@@ -63,7 +63,7 @@ public class SceneWork : MonoBehaviour
     public void SceneLoad()
     {
         SqlConnect.OpenConnection();
-        string sql = "Select * from scenario";
+        string sql = $"Select * from Scenario;";
 
         SqliteDataReader reader = SqlConnect.ExecuteReader(sql);
 
@@ -74,7 +74,15 @@ public class SceneWork : MonoBehaviour
                 if(ScenarioID == reader.GetInt32(0))
                 {
                     DataRead(reader);
-                    
+
+                    if (reader.Read())
+                    {
+                        ScenarioIDNext = reader.GetInt32(0);
+                    }
+                    else
+                        ScenarioIDNext = -1;
+
+                    break;
                 }
             }
         }
@@ -82,6 +90,25 @@ public class SceneWork : MonoBehaviour
         SqlConnect.CloseConnection();
         scoreStep = StepCalc();
     }
+
+        public void Reset()
+    {
+        ScenarioIDNext = -1;
+
+        SceneName = "None";
+        SceneDescription = "None";
+
+        items.Clear();
+        collisions.Clear();
+        actions.Clear();
+
+        pose =-1;
+        spawnPoint = -1;
+
+        score = 0;
+        scoreStep = 0;
+    }
+
 
 
     private void DataRead(SqliteDataReader reader)
@@ -103,7 +130,7 @@ public class SceneWork : MonoBehaviour
 
     private List<int> DataSeparatesToInt(string text, string sepChar = " ")
     {
-        if (text == null || text == string.Empty) return null;
+        if (string.IsNullOrEmpty(text)) return new List<int>();
 
         List<int> list = new List<int>();
         string[] split = text.Split(new string[] { sepChar }, StringSplitOptions.RemoveEmptyEntries);
@@ -120,8 +147,7 @@ public class SceneWork : MonoBehaviour
     private float StepCalc()
     {
         int score = items.Count + actions.Count;
-        if (score == 0) score = 1;
 
-        return (100 / (float)score);
+        return (100 / Mathf.Max(score, 1));
     }
 }

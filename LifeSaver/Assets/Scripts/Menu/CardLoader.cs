@@ -7,21 +7,33 @@ using TMPro;
 using UnityEngine.UI;
 using System;
 using UnityEngine.Events;
+using System.IO;
 
 public class CardLoader : MonoBehaviour
 {
     public GameObject CardPrefabe;
     public Transform CardContainer;
 
+    [Tooltip("Цвет при отсутствии оценки")]
+    public Color NoneColor = Color.white;
+    [Tooltip("Цвет отметки при оценке: grade < 50 && grade > 0")]
+    public Color BadGradeColor = Color.white;
+    [Tooltip("Цвет отметки при оценке: grade < 80 && grade > 50")]
+    public Color GoodGradeColor = Color.white;
+    [Tooltip("Цвет отметки при оценке: grade > 80")]
+    public Color SuperGradeColor = Color.white;
+
+
+
     private void Start()
     {
-        if(CardContainer == null)
+        if (CardContainer == null)
             CardContainer = transform;
     }
 
     public void CardLoad()
     {
-        string query = $"Select ID, name, description, grade from Scenario;";
+        string query = $"Select ID, name, description, grade, image from Scenario;";
 
         SqlConnect.OpenConnection();
         SqliteDataReader reader = SqlConnect.ExecuteReader(query);
@@ -39,7 +51,8 @@ public class CardLoader : MonoBehaviour
                 NewCard(
                     reader.GetInt32(0),
                     reader.GetString(1),
-                    grade
+                    grade,
+                    (byte[])reader["image"]
                     );
                 i++;
             }
@@ -51,33 +64,42 @@ public class CardLoader : MonoBehaviour
 
     }
 
-    private void NewCard(int id, string textContent, int grade = 0,Image image = null)
+    private void NewCard(int id, string textContent, int grade = 0, byte[] imageBytes = null)
     {
         GameObject card = Instantiate(CardPrefabe);
         card.transform.SetParent(CardContainer);
 
-        CardInformation cardInfo =  card.GetComponent<CardInformation>();
+        CardInformation cardInfo = card.GetComponent<CardInformation>();
         cardInfo.ScenarioID = id;
         cardInfo.TextName.text = textContent;
-        cardInfo.TextGrade.text = grade.ToString();
-        cardInfo.image = ByteToImage();
+        cardInfo.TextGrade.text = grade.ToString() + "%";
+        ByteToImage(cardInfo.image, imageBytes);
+        Debug.Log($"Image bytes length: {imageBytes?.Length}");
 
         Button button = cardInfo.button;
         button.onClick.AddListener(ButtonClick);
 
         ColorBlock colorBlock = button.colors;
+        colorBlock = GradeToColor(colorBlock, grade);
 
-        if(grade > 70) colorBlock.normalColor = Color.green;
-        else if (grade < 70 && grade > 50) colorBlock.normalColor = Color.yellow;
-        else if (grade < 50 && grade > 0) colorBlock.normalColor = Color.red;
-        else colorBlock.normalColor = Color.gray;
+
 
         button.colors = colorBlock;
     }
 
+    private ColorBlock GradeToColor(ColorBlock colorBlock, int grade)
+    {
+        if (grade > 80) colorBlock.normalColor = SuperGradeColor;
+        else if (grade < 80 && grade > 50) colorBlock.normalColor = GoodGradeColor;
+        else if (grade < 50 && grade > 0) colorBlock.normalColor = BadGradeColor;
+        else colorBlock.normalColor = NoneColor;
+
+        return colorBlock;
+    }
+
     private void ResizeContainer(int colElements)
     {
-       colElements = colElements / 4;
+        colElements = colElements / 4;
         RectTransform rectTransform = CardContainer.GetComponent<RectTransform>();
         Vector2 size = new Vector2(rectTransform.sizeDelta.x, rectTransform.sizeDelta.y);
         size.y = colElements * 350 + colElements * 20 + 350 * 3 - 40;
@@ -92,10 +114,18 @@ public class CardLoader : MonoBehaviour
 
     }
 
-    private Image ByteToImage(byte[] bytes = null)
+    private void ByteToImage(Image image, byte[] bytes = null)
     {
-        Image image = null;
+        if (bytes == null || bytes.Length == 0)
+        {
+            return; 
+        }
 
-        return image;
+        Texture2D texture = new Texture2D(1920, 1080);
+        texture.LoadImage(bytes);
+
+        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f,0.5f));
+
+        image.sprite = sprite;
     }
 }

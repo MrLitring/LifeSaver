@@ -85,6 +85,7 @@ public static class SqlConnect
     {
         OpenConnection();
 
+        Debug.Log(query);
         command.CommandText = query;
         command.ExecuteNonQuery();
 

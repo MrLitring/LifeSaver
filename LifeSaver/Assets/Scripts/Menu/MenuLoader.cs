@@ -28,7 +28,6 @@ public class MenuLoader : MonoBehaviour
             throw new System.Exception("Индекс сцены не назначен на: " + gameObject.name.ToString());
         }
 
-
     }
 
 }

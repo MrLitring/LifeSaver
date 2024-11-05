@@ -13,9 +13,12 @@ public class PlayerMenu : MonoBehaviour
     public GameObject AnswerUI;
 
 
+
     private void Start()
     {
         CursorSetActive(false);
+        Menu.SetActive(false);
+
     }
 
     private void Update()
@@ -33,21 +36,28 @@ public class PlayerMenu : MonoBehaviour
                 CursorSetActive(true);
         if (Input.GetKeyUp(KeyCode.LeftAlt))
             CursorSetActive(false);
+
     }
 
 
     public void Pause()
     {
         Menu.SetActive(true);
+        HUD.SetActive(false);
+
         CursorSetActive(true);
         Time.timeScale = 0f;
+
     }
 
     public void Resume()
     {
         Menu.SetActive(false);
+        HUD.SetActive(true);
+
         CursorSetActive(false);
         Time.timeScale = 1f;
+
     }
 
     public void SceneRestart()
@@ -57,12 +67,35 @@ public class PlayerMenu : MonoBehaviour
         
     }
 
+    public void ExitMainMenu()
+    {
+        SceneLoad(0);
+
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+
+    }
+
+    public void AnwerUI()
+    {
+        Pause();
+        Menu.transform.Find("Buttons").gameObject.SetActive(false);
+        AnswerUI.SetActive(true);
+        AnswerUI.GetComponent<AnswerCalculation>().Show();
+    }
 
     public void SceneLoad(int SceneIndex)
     {
+        SceneWork.Instance.Reset();
+        SceneWork.Instance.SceneLoad();
         SceneManager.LoadScene(SceneIndex);
         Time.timeScale = 1f;
+
     }
+
 
 
     private void CursorSetActive(bool active)
@@ -72,5 +105,6 @@ public class PlayerMenu : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         else
             Cursor.lockState = CursorLockMode.None;
+
     }
 }

@@ -244,6 +244,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardPrefabe: {fileID: 1116978204391998236, guid: 32f86659a98755e459f7247cb9a74efa, type: 3}
   CardContainer: {fileID: 407185632}
+  NoneColor: {r: 1, g: 1, b: 1, a: 0.39607844}
+  BadGradeColor: {r: 1, g: 1, b: 1, a: 1}
+  GoodGradeColor: {r: 1, g: 1, b: 1, a: 1}
+  SuperGradeColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &281446693
 MonoBehaviour:
   m_ObjectHideFlags: 0

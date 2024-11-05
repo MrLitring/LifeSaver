@@ -22,7 +22,7 @@ public class DataToSave
     {
         get
         {
-            return $"UPDATE {this.tableName} SET \"{this.columnName}\" = {this.value} WHERE ID = {this.id}";
+            return $"UPDATE {this.tableName} SET \'{this.columnName}\' = {this.value} WHERE ID = {this.id}";
         }
     }
 

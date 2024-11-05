@@ -45,8 +45,9 @@ public class InteractionController : MonoBehaviour
                 {
                     GameObject item = playerInventory.GetItem(InventoryKey, true);
                     if (item != null)
-                        interactable.Interact(item);
+                        interactable.GetComponent<NPCInteract>().Interact(item);
                 }
+                
                 else if (interactable.GetComponent<Item>())
                     interactable.GetComponent<Interactable>().Interact(InventoryKey, interactable.gameObject);
 
@@ -99,10 +100,11 @@ public class InteractionController : MonoBehaviour
                     text = $"Нажмите на {KeyboardSettings.Interactble.ToString()} ," +
                         $" чтобы поднять {interactable.GetComponent<Item>().itemName}";
                 }
-                else if (interactable.GetComponent<NPCInteract>())
+
+                if (interactable.GetComponent<NPCInteract>())
                 {
                     text = $"Нажмите на {KeyboardSettings.Interactble.ToString()} ," +
-                        $" чтобы применить на {interactable.GetComponent<NPCInteract>().name}";
+                        $" чтобы применить на {interactable.GetComponent<NPCInteract>().itemName}";
                 }
             }
 
