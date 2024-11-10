@@ -43,6 +43,7 @@ public class DBToObject : MonoBehaviour
                         if (list[i].ID == reader.GetInt32(0))
                         {
                             list[i].itemName = reader.GetString(1);
+                            list[i].transform.name = reader.GetString(1);
                             break;
                         }
                     }
