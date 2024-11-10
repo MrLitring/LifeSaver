@@ -30,4 +30,21 @@ public class MenuLoader : MonoBehaviour
 
     }
 
+    public void SceneLoad(int id)
+    {
+        if (id >= 0)
+        {
+            SceneWork sceneWork = SceneWork.Instance;
+            sceneWork.ScenarioID = id;
+            sceneWork.SceneLoad();
+
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            throw new System.Exception("Индекс сцены не назначен на: " + gameObject.name.ToString());
+        }
+
+    }
+
 }

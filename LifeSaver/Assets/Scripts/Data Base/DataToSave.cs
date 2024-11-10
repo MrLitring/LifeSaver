@@ -16,6 +16,7 @@ public class DataToSave
         this.tableName = tableName;
         this.columnName = columnName;
         this.value = value;
+        id = ID;
     }
 
     public string Query

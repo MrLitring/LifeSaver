@@ -26,8 +26,7 @@ public class AnswerCalculation : MonoBehaviour
     public void NextScene()
     {
         MenuLoader menuLoader = new MenuLoader();
-        SceneWork.Instance.ScenarioID = SceneWork.Instance.ScenarioIDNext;
-        menuLoader.SceneLoad();
+        menuLoader.SceneLoad(SceneWork.Instance.ScenarioIDNext);
     }
 
 }

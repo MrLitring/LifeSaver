@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\u0441\u0442\u043E\u043B"
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ad659bf7271751749b4a37cbcb3324d0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
