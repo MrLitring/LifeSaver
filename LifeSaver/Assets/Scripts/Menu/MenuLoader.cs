@@ -21,7 +21,7 @@ public class MenuLoader : MonoBehaviour
             sceneWork.ScenarioID = ScenarioID;
             sceneWork.SceneLoad();
 
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
         else
         {

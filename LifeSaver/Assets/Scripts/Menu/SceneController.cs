@@ -25,6 +25,7 @@ public class SceneController : MonoBehaviour
     public void ExitToMainMenu()
     {
         SceneManager.LoadScene(0);
+        Time.timeScale = 1.0f;
     }
 
     public void Quit()
