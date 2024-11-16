@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3845524008336176022}
   - component: {fileID: 3953059970556586947}
+  - component: {fileID: 9207062525470129024}
   - component: {fileID: 4609572468466059293}
   - component: {fileID: 2094693708769642851}
   - component: {fileID: 3370801020806206147}
@@ -52,6 +53,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5804382160766758686}
   m_CullTransparentMesh: 1
+--- !u!114 &9207062525470129024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5804382160766758686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8266819cf056b84b8dff20f7387c7d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4609572468466059293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6584830559435416222, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_fontSize
-      value: 22
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 6584830559435416222, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_fontStyle
@@ -179,11 +192,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6584830559435416222, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_fontSizeBase
-      value: 22
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 6584830559435416222, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_characterSpacing
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8763620294842363818, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_Pivot.x
@@ -317,7 +330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6584830559435416222, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_fontSize
-      value: 22
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 6584830559435416222, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_fontStyle
@@ -325,11 +338,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6584830559435416222, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_fontSizeBase
-      value: 22
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 6584830559435416222, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_characterSpacing
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8763620294842363818, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_Pivot.x
@@ -467,7 +480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6584830559435416222, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_fontSize
-      value: 22
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 6584830559435416222, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_fontStyle
@@ -475,11 +488,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6584830559435416222, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_fontSizeBase
-      value: 22
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 6584830559435416222, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_characterSpacing
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8763620294842363818, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_Pivot.x
@@ -601,7 +614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6584830559435416222, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_fontSize
-      value: 22
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 6584830559435416222, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_fontStyle
@@ -621,11 +634,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6584830559435416222, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_fontSizeBase
-      value: 22
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 6584830559435416222, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_characterSpacing
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6584830559435416222, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_fontColor32.rgba
@@ -750,16 +763,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2030914851582755098, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 9207062525470129024}
+    - target: {fileID: 2030914851582755098, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2030914851582755098, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ExitMainMenu
+      value: ExitToMainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 2030914851582755098, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerMenu, Assembly-CSharp
+      value: SceneController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2030914851582755098, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -771,7 +788,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6584830559435416222, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_fontSize
-      value: 22
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 6584830559435416222, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_fontStyle
@@ -779,11 +796,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6584830559435416222, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_fontSizeBase
-      value: 22
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 6584830559435416222, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_characterSpacing
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8763620294842363818, guid: f6e6a062b510e3d4f91d1adce744b1ca, type: 3}
       propertyPath: m_Pivot.x
