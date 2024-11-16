@@ -29,6 +29,9 @@ public class CardLoader : MonoBehaviour
     {
         if (CardContainer == null)
             CardContainer = transform;
+
+
+        CardLoad();
     }
 
     public void CardLoad()

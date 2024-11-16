@@ -110,6 +110,30 @@ public class SceneWork : MonoBehaviour
     }
 
 
+    public string GetString(string name)
+    {
+        string text = string.Empty;
+
+        switch(name)
+        {
+            case "SceneName": text = SceneName; break;
+            case "SceneDescription": text = SceneDescription; break;
+
+            case "Settings":
+                {
+                    text = $"Для перемещения используйте \r\nклавишы:\r\n{KeyboardSettings.Left} - влево;\r\n{KeyboardSettings.MoveForward} - вперед;\r\n{KeyboardSettings.MoveBack} - назад;\r\n{KeyboardSettings.Right} - вправо." +
+                        $"\r\n\r\nДля поворота камерой используйте компьютерную мышь." +
+                        $"\r\n\r\n{KeyboardSettings.Interactble} - подобрать/применить предмет.\r\n{KeyboardSettings.Drop} - выбросить предмет." +
+                        $"\r\n\r\n{KeyboardSettings.Alpha1},{KeyboardSettings.Alpha2},{KeyboardSettings.Alpha3},{KeyboardSettings.Alpha4},{KeyboardSettings.Alpha5} - клавишы выбора слота в инвентаре.";
+
+                    break;
+                }
+        }
+
+
+    return text;
+}
+
 
     private void DataRead(SqliteDataReader reader)
     {
