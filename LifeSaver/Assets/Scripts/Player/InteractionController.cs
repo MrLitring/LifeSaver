@@ -72,6 +72,9 @@ public class InteractionController : MonoBehaviour
             InventoryKey = 3;
         else if (Input.GetKeyUp(KeyboardSettings.Alpha5))
             InventoryKey = 4;
+
+
+        playerInventory.ShowSlotActive(InventoryKey);
     }
 
     private Interactable InteractbleSearch()
