@@ -42,9 +42,6 @@ public class SceneWork : MonoBehaviour
     public float scoreStep = 0;
     public float score = 0;
 
-    public List<string> TrueAnswer = new List<string>();
-    public List<string> FalseAnswer = new List<string>();
-
 
 
     private void Awake()
@@ -110,15 +107,12 @@ public class SceneWork : MonoBehaviour
 
         score = 0;
         scoreStep = 0;
-
-        TrueAnswer.Clear();
-        FalseAnswer.Clear();
     }
 
 
     public string GetString(string name)
     {
-        string text = "";
+        string text = string.Empty;
 
         switch(name)
         {
@@ -178,6 +172,6 @@ public class SceneWork : MonoBehaviour
     {
         int score = items.Count + actions.Count;
 
-        return MathF.Ceiling(1+100 / Mathf.Max(score, 1));
+        return (100 / Mathf.Max(score, 1));
     }
 }

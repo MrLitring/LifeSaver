@@ -16,7 +16,6 @@ public class TextShow : MonoBehaviour
     private void Start()
     {
         sceneWork = SceneWork.Instance;
-        if (TextObject == null) return;
         TextObject.text = sceneWork.GetString(StringName);
     }
 

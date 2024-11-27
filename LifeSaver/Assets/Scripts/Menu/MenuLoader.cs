@@ -19,7 +19,6 @@ public class MenuLoader : MonoBehaviour
         {
             SceneWork sceneWork = SceneWork.Instance;
             sceneWork.ScenarioID = ScenarioID;
-            sceneWork.Reset();
             sceneWork.SceneLoad();
 
             SceneManager.LoadScene(2);
@@ -37,10 +36,9 @@ public class MenuLoader : MonoBehaviour
         {
             SceneWork sceneWork = SceneWork.Instance;
             sceneWork.ScenarioID = id;
-            sceneWork.Reset();
             sceneWork.SceneLoad();
 
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(1);
         }
         else
         {
