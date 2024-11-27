@@ -17,7 +17,6 @@ public class SceneController : MonoBehaviour
         SceneWork sceneWork = SceneWork.Instance;
 
         sceneWork.Reset();
-        sceneWork.SceneLoad();
         SceneManager.LoadScene(sceneIndex);
         Time.timeScale = 1.0f;
 

@@ -18,16 +18,9 @@ public class NPCInteract : Item
         if (isTargets == false)
         {
             SceneWork.Instance.score -= SceneWork.Instance.scoreStep;
-            if (SceneWork.Instance.score < -100 ) SceneWork.Instance.score = -100;
-            SceneWork.Instance.FalseAnswer.Add(item.GetComponent<Item>().itemName);
         }
         else
-        {
             SceneWork.Instance.score += SceneWork.Instance.scoreStep;
-
-            if (SceneWork.Instance.score > 100) SceneWork.Instance.score = 100;
-            SceneWork.Instance.TrueAnswer.Add(item.GetComponent<Item>().itemName);
-        }
 
     }
 }
