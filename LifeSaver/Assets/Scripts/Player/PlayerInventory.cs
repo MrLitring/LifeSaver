@@ -1,11 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
     public Transform InventoryParent;
+    public GameObject[] InventorySlotsShow = new GameObject[5];
+    public Color ColorDeselect = Color.white;
+    public Color ColorSelected = Color.white;
+
+
     private GameObject[] inventorySlots = new GameObject[5];
+
+
 
     private void Start()
     {
@@ -21,8 +29,11 @@ public class PlayerInventory : MonoBehaviour
             inventorySlots[slotIndex] = obj;
             obj.transform.SetParent(InventoryParent);
             obj.SetActive(false);
-        }
 
+            Debug.Log(slotIndex.ToString());
+            VisibleInventorySlots(slotIndex, obj.GetComponent<Item>().itemName.Substring(0,1));
+        }
+        
     }
 
     public void Remove(int slotIndex)
@@ -31,6 +42,8 @@ public class PlayerInventory : MonoBehaviour
         inventorySlots[slotIndex] = null;
 
         item.transform.SetParent(null);
+
+        UnVisibleInventorySlots(slotIndex);
     }
 
     public void Drop(int slotIndex, Transform dropPosition)
@@ -44,7 +57,11 @@ public class PlayerInventory : MonoBehaviour
             obj.SetActive(true);
 
             inventorySlots[slotIndex] = null;
+
+            
+            UnVisibleInventorySlots(slotIndex);
         }
+
     }
 
 
@@ -62,5 +79,43 @@ public class PlayerInventory : MonoBehaviour
             return item;
         }
         else return null;
+    }
+
+
+    public void ShowSlotActive(int index)
+    {
+        for (int slotIndex = 0; slotIndex < InventorySlotsShow.Length; slotIndex++)
+        {
+            InventorySlotsShow[slotIndex].gameObject.GetComponent<UnityEngine.UI.Image>().color = ColorDeselect;
+
+            if(slotIndex == index)
+                InventorySlotsShow[slotIndex].gameObject.GetComponent<UnityEngine.UI.Image>().color = ColorSelected;
+        }
+    }
+
+
+    private void VisibleInventorySlots(int index, string name ="")
+    {
+        TextMeshProUGUI text = null;
+
+        text = InventorySlotsShow[index].gameObject.transform.Find("Text").GetComponent<TextMeshProUGUI>();
+
+        if (text == null) return;
+
+        text.text = name;
+
+
+    }
+
+    private void UnVisibleInventorySlots(int index)
+    {
+        TextMeshProUGUI text = null;
+
+        text = InventorySlotsShow[index].gameObject.transform.Find("Text").GetComponent<TextMeshProUGUI>();
+
+        if (text == null) return;
+
+        text.text = "";
+
     }
 }

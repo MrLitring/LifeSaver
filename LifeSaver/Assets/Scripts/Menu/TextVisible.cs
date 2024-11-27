@@ -15,6 +15,12 @@ public class TextVisible : MonoBehaviour
         StartCoroutine(Hide());
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+            gameObject.SetActive(false);
+    }
+
 
     private IEnumerator Hide()
     {
