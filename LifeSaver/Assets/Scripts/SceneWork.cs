@@ -28,6 +28,7 @@ public class SceneWork : MonoBehaviour
         }
     }
 
+    public bool isEditMode = false;
 
     public int ScenarioID = -1;
     public int ScenarioIDNext = -1;
@@ -116,6 +117,7 @@ public class SceneWork : MonoBehaviour
 
         switch(name)
         {
+            case "ID": text = ScenarioID.ToString(); break;
             case "SceneName": text = SceneName; break;
             case "SceneDescription": text = SceneDescription; break;
 
