@@ -30,6 +30,7 @@ public class CardLoader : MonoBehaviour
         if (CardContainer == null)
             CardContainer = transform;
 
+
         CardLoad();
     }
 
