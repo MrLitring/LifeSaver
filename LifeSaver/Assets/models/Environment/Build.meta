@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:LifeSaver/Assets/models/Environment/Build.meta
 guid: 32b386ef97c37074394a8606254fec46
 folderAsset: yes
+========
+guid: faa8496d99b5b494ea5d5ed312a9c59f
+>>>>>>>> parent of d9084c8 (EditMode v1):LifeSaver/Assets/Scenes/TestRoom.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
