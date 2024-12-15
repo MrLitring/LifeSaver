@@ -15,6 +15,43 @@ public class MenuLoader : MonoBehaviour
 
     public void SceneLoad()
     {
+        SceneWork sceneWork = SceneWork.Instance;
+        sceneWork.isEditMode = false;
+        SceneLoader();
+    }
+
+    public void SceneLoad(int id)
+    {
+        SceneWork sceneWork = SceneWork.Instance;
+        if (id >= 0)
+        {
+            ScenarioID = id;
+        }
+
+        sceneWork.isEditMode = false;
+        SceneLoader();
+    }
+
+    public void ButtonEdit()
+    {
+        SceneWork sceneWork = SceneWork.Instance;
+        sceneWork.isEditMode = true;
+
+        SceneLoader();
+    }
+
+    public void Delete()
+    {
+        SceneWork sceneWork = SceneWork.Instance;
+        SqlConnect.OpenConnection();
+        string sql = "Delete from Scenario where ID = " + ScenarioID;
+        SqlConnect.ExecuteCommand(sql);
+        SqlConnect.CloseConnection();
+    }
+
+
+    private void SceneLoader()
+    {
         if (ScenarioID >= 0)
         {
             SceneWork sceneWork = SceneWork.Instance;
@@ -27,24 +64,6 @@ public class MenuLoader : MonoBehaviour
         {
             throw new System.Exception("Индекс сцены не назначен на: " + gameObject.name.ToString());
         }
-
-    }
-
-    public void SceneLoad(int id)
-    {
-        if (id >= 0)
-        {
-            SceneWork sceneWork = SceneWork.Instance;
-            sceneWork.ScenarioID = id;
-            sceneWork.SceneLoad();
-
-            SceneManager.LoadScene(1);
-        }
-        else
-        {
-            throw new System.Exception("Индекс сцены не назначен на: " + gameObject.name.ToString());
-        }
-
     }
 
 }

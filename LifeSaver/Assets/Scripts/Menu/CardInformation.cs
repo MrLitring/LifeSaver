@@ -12,5 +12,4 @@ public class CardInformation : MonoBehaviour
     public TextMeshProUGUI TextGrade;
 
     public Button button;
-
 }
