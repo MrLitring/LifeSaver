@@ -54,8 +54,8 @@ public class CardLoader : MonoBehaviour
                 NewCard(
                     reader.GetInt32(0),
                     reader.GetString(1),
-                    grade,
-                    (byte[])reader["image"]
+                    grade
+                    
                     );
                 i++;
             }
@@ -76,8 +76,8 @@ public class CardLoader : MonoBehaviour
         cardInfo.ScenarioID = id;
         cardInfo.TextName.text = textContent;
         cardInfo.TextGrade.text = grade.ToString() + "%";
-        ByteToImage(cardInfo.image, imageBytes);
-        Debug.Log($"Image bytes length: {imageBytes?.Length}");
+        //ByteToImage(cardInfo.image, imageBytes);
+        //Debug.Log($"Image bytes length: {imageBytes?.Length}");
 
         Button button = cardInfo.button;
         button.onClick.AddListener(ButtonClick);
