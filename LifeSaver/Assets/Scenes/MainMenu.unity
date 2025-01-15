@@ -245,7 +245,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 281446691}
-  - component: {fileID: 281446692}
   - component: {fileID: 281446694}
   - component: {fileID: 281446693}
   m_Layer: 5
@@ -276,24 +275,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &281446692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 281446690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 120fd2c4275f0dd4e8c053de6a7a3081, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CardPrefabe: {fileID: 1116978204391998236, guid: 32f86659a98755e459f7247cb9a74efa, type: 3}
-  CardContainer: {fileID: 407185632}
-  NoneColor: {r: 1, g: 1, b: 1, a: 0.39607844}
-  BadGradeColor: {r: 1, g: 1, b: 1, a: 1}
-  GoodGradeColor: {r: 1, g: 1, b: 1, a: 1}
-  SuperGradeColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &281446693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,13 +346,13 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 281446691}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -500.00043}
+  m_AnchoredPosition: {x: 0, y: -500.0001}
   m_SizeDelta: {x: -40, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &407185633
@@ -397,7 +378,7 @@ MonoBehaviour:
   m_CellSize: {x: 440, y: 350}
   m_Spacing: {x: 30, y: 20}
   m_Constraint: 0
-  m_ConstraintCount: 2
+  m_ConstraintCount: 3
 --- !u!1 &559271799
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,6 +559,84 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &739723558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 739723560}
+  - component: {fileID: 739723559}
+  - component: {fileID: 739723561}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &739723559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739723558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd57da159f66a9648ad8d3cc3dbcd2f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NeedLoad:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 739723561}
+        m_TargetAssemblyTypeName: CardLoader, Assembly-CSharp
+        m_MethodName: CardLoad
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!4 &739723560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739723558}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 860.14746, y: 531.0486, z: -6.227298}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &739723561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739723558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 120fd2c4275f0dd4e8c053de6a7a3081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CardPrefabe: {fileID: 1116978204391998236, guid: 32f86659a98755e459f7247cb9a74efa, type: 3}
+  CardContainer: {fileID: 407185632}
+  NoneColor: {r: 1, g: 1, b: 1, a: 0.39607844}
+  BadGradeColor: {r: 1, g: 1, b: 1, a: 1}
+  GoodGradeColor: {r: 1, g: 1, b: 1, a: 1}
+  SuperGradeColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &795405668
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,7 +1240,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1502471208}
   m_HandleRect: {fileID: 1502471207}
   m_Direction: 2
-  m_Value: 1.0000142
+  m_Value: 1.000004
   m_Size: 0.97
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2201,6 +2260,7 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 739723560}
   - {fileID: 72728319}
   - {fileID: 1732629265}
   - {fileID: 1465716493}

@@ -1,15 +1,8 @@
 using Mono.Data.Sqlite;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
-using System;
-using UnityEngine.Events;
-using System.IO;
 
-public class CardLoader : MonoBehaviour
+public class CardLoader : MonoBehaviour, IGameLoader
 {
     public GameObject CardPrefabe;
     public Transform CardContainer;
@@ -23,14 +16,11 @@ public class CardLoader : MonoBehaviour
     [Tooltip("Цвет отметки при оценке: grade > 80")]
     public Color SuperGradeColor = Color.white;
 
+    private CardInformation cardInfo;
 
 
-    private void Start()
+    void IGameLoader.Load()
     {
-        if (CardContainer == null)
-            CardContainer = transform;
-
-
         CardLoad();
     }
 
@@ -55,7 +45,6 @@ public class CardLoader : MonoBehaviour
                     reader.GetInt32(0),
                     reader.GetString(1),
                     grade
-                    
                     );
                 i++;
             }
@@ -64,28 +53,36 @@ public class CardLoader : MonoBehaviour
         SqlConnect.CloseConnection();
 
         ResizeContainer(i);
+        
 
     }
 
-    private void NewCard(int id, string textContent, int grade = 0, byte[] imageBytes = null)
+    private void NewCard(int id, string textContent, int grade)
     {
         GameObject card = Instantiate(CardPrefabe);
         card.transform.SetParent(CardContainer);
+        
+        cardInfo = card.GetComponent<CardInformation>();
 
-        CardInformation cardInfo = card.GetComponent<CardInformation>();
+
+        SetValues(id, textContent, grade.ToString());
+        SetColor(grade);
+    }
+
+    private void SetValues(int id, string name, string grade)
+    {
         cardInfo.ScenarioID = id;
-        cardInfo.TextName.text = textContent;
-        cardInfo.TextGrade.text = grade.ToString() + "%";
-        //ByteToImage(cardInfo.image, imageBytes);
-        //Debug.Log($"Image bytes length: {imageBytes?.Length}");
+        cardInfo.TextName.text = name;
+        cardInfo.TextGrade.text = grade + "%";
+    }
 
+
+    private void SetColor(int grade)
+    {
         Button button = cardInfo.button;
-        button.onClick.AddListener(ButtonClick);
 
         ColorBlock colorBlock = button.colors;
         colorBlock = GradeToColor(colorBlock, grade);
-
-
 
         button.colors = colorBlock;
     }
@@ -111,24 +108,4 @@ public class CardLoader : MonoBehaviour
         rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, -size.y / 2);
     }
 
-    private void ButtonClick()
-    {
-
-
-    }
-
-    private void ByteToImage(Image image, byte[] bytes = null)
-    {
-        if (bytes == null || bytes.Length == 0)
-        {
-            return; 
-        }
-
-        Texture2D texture = new Texture2D(1920, 1080);
-        texture.LoadImage(bytes);
-
-        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f,0.5f));
-
-        image.sprite = sprite;
-    }
 }
