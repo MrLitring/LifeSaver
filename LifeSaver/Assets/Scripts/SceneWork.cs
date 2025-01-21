@@ -93,7 +93,6 @@ public class SceneWork : MonoBehaviour
 
         public void Reset()
     {
-        ScenarioIDNext = -1;
 
         SceneName = "None";
         SceneDescription = "None";
